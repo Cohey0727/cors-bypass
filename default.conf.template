@@ -1,6 +1,6 @@
 server {
     listen 80;
-    server_name example.com;
+    server_name _;
     # デバッグ用
     location = /__healthcheck {
         add_header Content-Type text/plain;
