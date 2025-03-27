@@ -4,9 +4,9 @@ server {
     # デバッグ用
     location = /__healthcheck {
         add_header Content-Type text/plain;
-        return 200 "Test endpoint working. UPSTREAM_URL is: ${UPSTREAM_URL}";
+        return 200 "Test endpoint working. UPSTREAM_URL is: $UPSTREAM_URL";
     }
-    
+
     location / {
         if ($request_method = 'OPTIONS') {
             add_header 'Access-Control-Allow-Origin' '*';
@@ -16,10 +16,7 @@ server {
             return 204;
         }
 
-        # 全リクエストにCORSヘッダーを追加
-        add_header 'Access-Control-Allow-Origin' '*' always;
-        add_header 'Access-Control-Allow-Methods' 'GET, POST, PUT, DELETE, OPTIONS' always;
-        add_header 'Access-Control-Allow-Headers' '*' always;
-        proxy_pass ${UPSTREAM_URL};
+        proxy_pass_request_headers on;
+        proxy_pass $UPSTREAM_URL;
     }
 }
