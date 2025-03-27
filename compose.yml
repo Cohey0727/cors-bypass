@@ -1,0 +1,10 @@
+services:
+  cors-proxy:
+    image: nginx:alpine
+    container_name: cors-proxy
+    ports:
+      - "${PORT:-8888}:80"
+    env_file:
+      - .env
+    volumes:
+      - ./default.conf.template:/etc/nginx/templates/default.conf.template
