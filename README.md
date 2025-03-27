@@ -17,7 +17,7 @@
 ```bash
 cp .env.example .env
 # .envファイルを編集してUPSTREAM_URLを設定
-docker-compose up -d
+docker compose up -d
 ```
 
 ## 使用方法
